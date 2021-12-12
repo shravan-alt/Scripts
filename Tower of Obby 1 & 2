@@ -1,0 +1,8 @@
+while wait() do
+    game:GetService("ReplicatedStorage").Events.prestige:FireServer()
+    WeebGang = game.Players.LocalPlayer.leaderstats.Stage.Value + 1
+    if game.Workspace.Checkpoints:FindFirstChild(tostring(WeebGang)) then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+            game.Workspace.Checkpoints:FindFirstChild(tostring(WeebGang)).CFrame
+    end
+end
