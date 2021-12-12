@@ -3,6 +3,7 @@ game:GetService('Players').LocalPlayer.Idled:connect(function()
     VirtualUser:CaptureController()
     VirtualUser:ClickButton2(Vector2.new())
 end)
+
 while wait() do 
 clvl = game.Players.LocalPlayer.leaderstats.Stage.Value + 1
 if game.Workspace.stages:FindFirstChild(tostring(clvl)) then
