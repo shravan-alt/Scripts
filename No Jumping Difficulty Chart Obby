@@ -7,7 +7,7 @@ Button1 = "Ok"
 
 local VLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library%202"))()
 
-local s = VLib:Window("Mega", "Easy Obby", "LOL")
+local s = VLib:Window("No Jumping", "No Jumping", "LOL")
 
 local ss = s:Tab("Main")
 
