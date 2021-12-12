@@ -1,8 +1,11 @@
-while wait() do
-    game:GetService("ReplicatedStorage").Events.prestige:FireServer()
-    WeebGang = game.Players.LocalPlayer.leaderstats.Stage.Value + 1
-    if game.Workspace.Checkpoints:FindFirstChild(tostring(WeebGang)) then
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
-            game.Workspace.Checkpoints:FindFirstChild(tostring(WeebGang)).CFrame
-    end
+local VirtualUser = game:GetService('VirtualUser')
+game:GetService('Players').LocalPlayer.Idled:connect(function()
+    VirtualUser:CaptureController()
+    VirtualUser:ClickButton2(Vector2.new())
+end)
+while wait() do 
+clvl = game.Players.LocalPlayer.leaderstats.Stage.Value + 1
+if game.Workspace.stages:FindFirstChild(tostring(clvl)) then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.stages:FindFirstChild(tostring(clvl)).CFrame
+end
 end
