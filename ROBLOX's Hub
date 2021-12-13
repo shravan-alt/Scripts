@@ -142,7 +142,8 @@ print(t)
 
 ss:Label("Credits: ROBLOX#3484")
 
-elseif game.PlaceId == 12996397,982130670 then
+elseif game.PlaceId == 12996397 then
+
 local VLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library%202"))()
 
 local s = VLib:Window("Mega", "Fun Obby", "LOL")
@@ -181,3 +182,45 @@ print(t)
 
 
 ss:Label("Credits: ROBLOX#3484")
+
+elseif game.PlaceId == 982130670 then
+
+local VLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library%202"))()
+
+local s = VLib:Window("Mega", "Fun Obby", "LOL")
+
+local ss = s:Tab("Main")
+
+ss:Button("Auto Finish",function()
+ while wait() do 
+clvl = game.Players.LocalPlayer.leaderstats.Stage.Value + 1
+if game.Workspace.stages:FindFirstChild(tostring(clvl)) then
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.stages:FindFirstChild(tostring(clvl)).CFrame
+end
+end
+end)
+
+ss:Button("Anti Afk",function()
+    repeat wait() until game.Players.LocalPlayer.Character
+    url = "https://raw.githubusercontent.com/shravan-alt/Scripts/main/Anti-AFK"
+    loadstring(game:HttpGet(url))()
+end)
+
+
+ss:Button("Infinite Yield",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/shravan-alt/Scripts/main/Infinite%20Yield'))()
+end)
+
+
+ss:Slider("WalkSpeed",16,100,70,function(t)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (t)
+end)
+
+
+ss:Colorpicker("Colorpicker",Color3.fromRGB(255, 1, 1),function(t)
+print(t)
+    end)
+
+
+ss:Label("Credits: ROBLOX#3484")
+end
