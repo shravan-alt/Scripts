@@ -12,4 +12,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/m
 
 elseif game.PlaceId == 982130670 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Mega%20Fun%20Obby%201%20%26%202", true))()
+
+elseif game.PlaceId == 6824046084 then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Silly's%20Difficulty%20Chart%20Obby", true))()
 end
