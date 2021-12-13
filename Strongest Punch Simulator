@@ -1,4 +1,4 @@
-local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Maxgat5/UiLib/main/lua')))()
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library%205')))()
 local w = library:CreateWindow("Tower Of Misery")
 local e = w:CreateFolder("Auto Farm")
 local u = w:CreateFolder("Credits")
