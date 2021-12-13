@@ -12,10 +12,12 @@ local s = VLib:Window("Silly's", "Difficulty Chart Obby", "LOL")
 local ss = s:Tab("Main")
 
 ss:Button("Auto Finish",function()
+     while wait() do
      ROBLOX= game.Players.LocalPlayer.leaderstats.Stage.Value + 1
     if game.Workspace.Checkpoints:FindFirstChild(tostring(ROBLOX)) then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
             game.Workspace.Checkpoints:FindFirstChild(tostring(ROBLOX)).CFrame  
+    end
     end
     end)
     
