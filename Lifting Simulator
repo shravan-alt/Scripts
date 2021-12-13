@@ -4,14 +4,15 @@ local e = w:CreateFolder("Auto Farm")
 local u = w:CreateFolder("Credits")
 
 e:Toggle("Auto Lift",function()
- 
- while wait() do
+        
+ while true do
 local args = {
     [1] = {
         [1] = "GainMuscle"
     }
 }
 game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+wait()
 end
 end)
 
