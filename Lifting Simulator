@@ -3,16 +3,19 @@ local w = library:CreateWindow("Lifting Simulator")
 local e = w:CreateFolder("Auto Farm")
 local u = w:CreateFolder("Credits")
 
-e:Toggle("Auto Lift",function()
-        
- while true do
+e:Toggle('Auto Lift',{flag = "AutoLift"})
+function()
+spawn( 
+    function()
+        while wait() do
+          if e.flags.AutoLift then
 local args = {
     [1] = {
         [1] = "GainMuscle"
     }
 }
 game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-wait()
+wait(1)
 end
 end)
 
