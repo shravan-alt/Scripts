@@ -1,3 +1,10 @@
+game.StarterGui:SetCore("SendNotification", {
+Title = "Credits";
+Text = "Made by ROBLOX#3484";
+Duration = math.huge;
+Button1 = "Ok"
+})
+
 if game.PlaceId == 4954752502 then
 local VLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library%202"))()
 
@@ -47,6 +54,7 @@ print(t)
 
 
 ss:Label("Credits: ROBLOX#3484")
+
 elseif game.PlaceId == 5874128725 then
     local VLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library%202"))()
 
@@ -66,6 +74,47 @@ for _,v in pairs(Stages:GetChildren()) do
 		Root.CFrame = Stages[i].CFrame * CFrame.new(Vector3.new(0, 2, 0))
 	end
 end
+end
+end)
+
+ss:Button("Anti Afk",function()
+    repeat wait() until game.Players.LocalPlayer.Character
+    url = "https://raw.githubusercontent.com/shravan-alt/Scripts/main/Anti-AFK"
+    loadstring(game:HttpGet(url))()
+end)
+
+
+ss:Button("Infinite Yield",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/shravan-alt/Scripts/main/Infinite%20Yield'))()
+end)
+
+
+ss:Slider("WalkSpeed",16,100,70,function(t)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (t)
+end)
+
+
+ss:Colorpicker("Colorpicker",Color3.fromRGB(255, 1, 1),function(t)
+print(t)
+    end)
+
+
+ss:Label("Credits: ROBLOX#3484")
+elseif game.PlaceId == 3587619225 then
+local VLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library%202"))()
+
+local s = VLib:Window("Mega", "Easy Obby", "LOL")
+
+local ss = s:Tab("Main")
+
+ss:Button("Auto Finish",function()
+ while wait() do
+    game:GetService("ReplicatedStorage").Events.prestige:FireServer()
+    ROBLOX = game.Players.LocalPlayer.leaderstats.Stage.Value + 1
+    if game.Workspace.Checkpoints:FindFirstChild(tostring(ROBLOX)) then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+            game.Workspace.Checkpoints:FindFirstChild(tostring(ROBLOX)).CFrame
+    end
 end
 end)
 
