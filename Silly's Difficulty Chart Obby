@@ -1,0 +1,54 @@
+game.StarterGui:SetCore("SendNotification", {
+Title = "Credits";
+Text = "Made by ROBLOX#3484";
+Duration = math.huge;
+Button1 = "Ok"
+})
+
+local VLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library%202"))()
+
+local s = VLib:Window("Silly's", "Difficulty Chart Obby", "LOL")
+
+local ss = s:Tab("Main")
+
+ss:Button("Auto Finish",function()
+     while wait() do
+     ROBLOX= game.Players.LocalPlayer.leaderstats.Stage.Value + 1
+    if game.Workspace.Checkpoints:FindFirstChild(tostring(ROBLOX)) then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+            game.Workspace.Checkpoints:FindFirstChild(tostring(ROBLOX)).CFrame  
+    end
+    end
+    end)
+    
+ss:Button("Rebirth",function()
+local args = {
+    [1] = 4
+}
+
+game:GetService("ReplicatedStorage").Remotes.Rebirth:InvokeServer(unpack(args))
+end)
+
+ss:Button("Anti Afk",function()
+    repeat wait() until game.Players.LocalPlayer.Character
+    url = "https://raw.githubusercontent.com/shravan-alt/Scripts/main/Anti-AFK"
+    loadstring(game:HttpGet(url))()
+end)
+
+
+ss:Button("Infinite Yield",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/shravan-alt/Scripts/main/Infinite%20Yield'))()
+end)
+
+
+ss:Slider("WalkSpeed",16,100,70,function(t)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (t)
+end)
+
+
+ss:Colorpicker("Colorpicker",Color3.fromRGB(255, 1, 1),function(t)
+print(t)
+    end)
+
+
+ss:Label("Credits: ROBLOX#3484")
