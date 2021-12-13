@@ -3,3 +3,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/m
 
 elseif game.PlaceId == 5874128725 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/No%20Jumping%20Difficulty%20Chart%20Obby", true))()
+
+elseif game.PlaceId == 3587619225 then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Mega%20Easy%20Obby%20%F0%9F%8C%9F%20725%20Stages", true))()
+  
+elseif game.PlaceId == 12996397 then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Mega%20Fun%20Obby%201%20%26%202", true))()
+
+elseif game.PlaceId == 982130670 then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Mega%20Fun%20Obby%201%20%26%202", true))()
+end
