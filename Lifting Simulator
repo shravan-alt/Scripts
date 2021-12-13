@@ -1,29 +1,50 @@
-local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library%205')))()
-local w = library:CreateWindow("Lifting Simulator")
-local e = w:CreateFolder("Auto Farm")
-local u = w:CreateFolder("Credits")
-_G.AutoLifting = true;
-_G.AutoSell = true
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library", true))()
+library.options.underlinecolor = "rainbow"
 
-e:Toggle("Auto Lift", function(bool)
-shared.toggle = bool
-AutoLift = bool
-end)
-spawn(function()
-while wait do 
-if Auto Lift
-
+local w = library:CreateWindow('Lifting Sim')
+w:Section('Auto Farm')
+local t = w:Toggle('Auto Lift', {flag = "AutoLift"})
+spawn( 
+    function()
+        while wait() do
+          if w.flags.AutoLift then
 local args = {
     [1] = {
-        [1] = "GainMuscle"
-    }
-}
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+        [1] = "GainMuscle",
+    },}
 wait()
+
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+
+end
 end
 end)
 
-
-u:Button("ROBLOX#3484",function()
-    setclipboard("ROBLOX#3484")
+w:Toggle('Auto Sell', {flag = "AutoSell"})
+spawn( 
+    function()
+        while wait() do
+          if w.flags.AutoSell then
+          local args = {
+    [1] = {
+        [1] = "SellMuscle",
+    },
+}
+wait()
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+end
+end
 end)
+
+        
+
+
+local w = library:CreateWindow('Other')
+w:Section('Misc')
+local b = w:Button("Disable AFK", function()
+for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+v:Disable()
+end
+end)
+
+w:Section('Right Ctrl to hide')
