@@ -3,8 +3,7 @@ local w = library:CreateWindow("Lifting Simulator")
 local e = w:CreateFolder("Auto Farm")
 local u = w:CreateFolder("Credits")
 
-e:Toggle('Auto Lift',{flag = "AutoLift"})
-function()
+e:Toggle('Auto Lift', {flag = "AutoLift"})
 spawn( 
     function()
         while wait() do
