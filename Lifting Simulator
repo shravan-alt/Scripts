@@ -2,19 +2,24 @@ local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shra
 local w = library:CreateWindow("Lifting Simulator")
 local e = w:CreateFolder("Auto Farm")
 local u = w:CreateFolder("Credits")
+_G.AutoLifting = true;
+_G.AutoSell = true
 
-e:Toggle('Auto Lift', {flag = "AutoLift"})
-spawn( 
-    function()
-        while wait() do
-          if e.flags.AutoLift then
+e:Toggle("Auto Lift", function(bool)
+shared.toggle = bool
+AutoLift = bool
+end)
+spawn(function()
+while wait do 
+if Auto Lift
+
 local args = {
     [1] = {
         [1] = "GainMuscle"
     }
 }
 game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-wait(1)
+wait()
 end
 end)
 
