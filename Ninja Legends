@@ -3,6 +3,31 @@ local w = library:CreateWindow("Ninja Legends")
 local e = w:CreateFolder("Auto Farm")
 local u = w:CreateFolder("Credits")
 
+getgenv().AutoSwing = false;
+getgenv().AutoSell = false;
+
+b:Toggle("Auto Swing",function(bool)
+getgenv().AutoSwing = bool
+if bool then
+doSwing();
+end
+end)
+
+function doSwing()
+spawn(function()
+while getgenv().AutoSwing == true do
+
+
+local args = {
+    [1] = "swingKatana"
+}
+
+game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(unpack(args))
+wait()
+end
+end)
+end
+
 e:Button("Anti Afk",function()
     repeat wait() until game.Players.LocalPlayer.Character
     url = "https://raw.githubusercontent.com/shravan-alt/Scripts/main/Anti-AFK"
