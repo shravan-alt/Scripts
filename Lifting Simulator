@@ -34,17 +34,14 @@ wait()
 game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
 end
 end
-end)
-
-        
-
+end)   
 
 local w = library:CreateWindow('Other')
 w:Section('Misc')
-local b = w:Button("Disable AFK", function()
-for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
-v:Disable()
-end
+local b = w:Button("AFK", function()
+   repeat wait() until game.Players.LocalPlayer.Character
+    url = "https://raw.githubusercontent.com/shravan-alt/Scripts/main/Anti-AFK"
+    loadstring(game:HttpGet(url))()
 end)
 
 w:Section('Right Ctrl to hide')
