@@ -1,3 +1,11 @@
+game.StarterGui:SetCore("SendNotification", {
+Title = "Credits";
+Text = "Made by ROBLOX#3484";
+Duration = math.huge;
+Button1 = "Ok"
+})
+
+
 if game.PlaceId == 4954752502 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Tower%20Of%20Misery%202", true))()
 
@@ -18,4 +26,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/m
 
 elseif game.PlaceId == 3652625463 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Lifting%20Simulator", true))()
+
+elseif game.PlaceId == 6677985923 then
+loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Millionaire%20Empire%20Tycoon", true))()
 end
