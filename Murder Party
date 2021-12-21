@@ -1,0 +1,40 @@
+local VLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library%202"))()
+
+local s = VLib:Window("Auto Farm", "Murder Party", "LOL")
+
+local ss = s:Tab("Main")
+
+ss:Button("Auto Collect Coins",function()
+for i,v in pairs(game:GetService("Workspace").Gems:GetDescendants()) do
+if v:IsA("TouchTransmitter") then
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 0)
+wait()
+firetouchinterest(game.Players.LocalPlayer.Character.HumanoidRootPart, v.Parent, 1)
+
+end
+end
+end)
+
+ss:Button("Anti Afk",function()
+    repeat wait() until game.Players.LocalPlayer.Character
+    url = "https://raw.githubusercontent.com/shravan-alt/Scripts/main/Anti-AFK"
+    loadstring(game:HttpGet(url))()
+end)
+
+
+ss:Button("Infinite Yield",function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/shravan-alt/Scripts/main/Infinite%20Yield'))()
+end)
+
+
+ss:Slider("WalkSpeed",16,100,70,function(t)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (t)
+end)
+
+
+ss:Colorpicker("Colorpicker",Color3.fromRGB(255, 1, 1),function(t)
+print(t)
+    end)
+
+
+ss:Label("Credits: ROBLOX#3484")
