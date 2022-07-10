@@ -1,0 +1,46 @@
+while true do
+local args = {
+    [1] = "sellPet",
+    [2] = game:GetService("Players").LocalPlayer.petsFolder.Omega:FindFirstChild("Dark Soul Birdie")
+}
+
+game:GetService("ReplicatedStorage").rEvents.sellPetEvent:FireServer(unpack(args))
+
+local args = {
+    [1] = "sellPet",
+    [2] = game:GetService("Players").LocalPlayer.petsFolder.Omega:FindFirstChild("Hypersonic Pegasus")
+}
+
+game:GetService("ReplicatedStorage").rEvents.sellPetEvent:FireServer(unpack(args))
+
+local args = {
+    [1] = "sellPet",
+    [2] = game:GetService("Players").LocalPlayer.petsFolder.Omega:FindFirstChild("Soul Fusion Dog")
+}
+
+game:GetService("ReplicatedStorage").rEvents.sellPetEvent:FireServer(unpack(args))
+
+
+local args = {
+    [1] = "sellPet",
+    [2] = game:GetService("Players").LocalPlayer.petsFolder.Omega:FindFirstChild("Eternal Nebula Dragon")
+}
+
+game:GetService("ReplicatedStorage").rEvents.sellPetEvent:FireServer(unpack(args))
+
+
+local args = {
+    [1] = "sellPet",
+    [2] = game:GetService("Players").LocalPlayer.petsFolder.Omega:FindFirstChild("Dark Soul Birdie")
+}
+
+game:GetService("ReplicatedStorage").rEvents.sellPetEvent:FireServer(unpack(args))
+
+local args = {
+    [1] = "sellPet",
+    [2] = game:GetService("Players").LocalPlayer.petsFolder.Omega:FindFirstChild("Shadows Edge Kitty")
+}
+
+game:GetService("ReplicatedStorage").rEvents.sellPetEvent:FireServer(unpack(args))
+wait()
+end
