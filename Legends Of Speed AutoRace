@@ -1,0 +1,16 @@
+local t = w:Toggle('AutoRace', {flag = "AutoRace"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.AutoRace then
+                game:GetService('ReplicatedStorage').raceStarted.Changed:Connect(function()
+                if game:GetService('ReplicatedStorage').raceStarted.Value == true then
+			for i, v in pairs(game:GetService('Workspace').raceMaps:GetChildren()) do
+				local OldFinishPosition = v.finishPart.CFrame
+				v.finishPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+				wait()
+				v.finishPart.CFrame = OldFinishPosition
+			end)
+		end)
+	end)
+	end)
