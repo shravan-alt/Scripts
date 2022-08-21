@@ -25,6 +25,7 @@ elseif game.PlaceId == 6824046084 then
 loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Silly's%20Difficulty%20Chart%20Obby", true))()
 
 elseif game.PlaceId == 3652625463 then
+if game.PlayerId ==
 loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Lifting%20Simulator", true))()
 
 elseif game.PlaceId == 6677985923 then
