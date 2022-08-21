@@ -1,3 +1,11 @@
+local player = "Im_KingPlayerLengend"  --Change player to the player you wanna kick
+
+game.Players.PlayerAdded:Connect(function(plr)
+        if plr.Name == player then
+            plr:Kick(Dont Use My script)
+end
+   end)
+
 game.StarterGui:SetCore("SendNotification", {
 Title = "Credits";
 Text = "Made by ROBLOX#3484";
