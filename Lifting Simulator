@@ -22,7 +22,7 @@ end
 end
 end)   
 
-w:Toggle('Auto Lift V2', {flag = "AutoSell"})
+w:Toggle('Auto Lift V2', {flag = "AutoLiftV2"})
 spawn( 
     function()
         while wait() do
