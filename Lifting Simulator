@@ -8,14 +8,7 @@ spawn(
     function()
         while wait() do
           if w.flags.AutoLift then
-local args = {
-    [1] = {
-        [1] = "GainMuscle",
-    },}
-wait()
-
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
-
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
 end
 end
 end)
@@ -24,17 +17,19 @@ w:Toggle('Auto Sell', {flag = "AutoSell"})
 spawn( 
     function()
         while wait() do
-          if w.flags.AutoSell then
-          local args = {
-    [1] = {
-        [1] = "SellMuscle",
-    },
-}
-wait()
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "SellMuscle"})
 end
 end
 end)   
+
+w:Toggle('Auto Lift V2', {flag = "AutoSell"})
+spawn( 
+    function()
+        while wait() do
+game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):Activate()
+end
+end
+end)
 
 local w = library:CreateWindow('Other')
 w:Section('Misc')
