@@ -9,6 +9,8 @@ spawn(
         while wait() do
           if w.flags.AutoLift then
             game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
 end
 end
 end)
