@@ -35,4 +35,13 @@ local b = w:Button("AFK", function()
     loadstring(game:HttpGet(url))()
 end)
 
+w:Section('Tool')
+local b = w:Button("Tool Farm", function()
+while true do
+game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):Activate()
+wait()
+end
+end)
+
+w:Section('Equip Weight to use "Tool Farm"')
 w:Section('Right Ctrl to hide')
