@@ -53,6 +53,6 @@ wait()
 end
 end)
 
-w:Section('Auto lift x100 increase ping"')
+w:Section('Auto lift x100 increase ping')
 w:Section('Equip Weight to use "Tool Farm"')
 w:Section('Right Ctrl to hide')
