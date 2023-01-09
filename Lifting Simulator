@@ -13,11 +13,6 @@ spawn(
             game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
             game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
             game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
 end
 end
 end)
