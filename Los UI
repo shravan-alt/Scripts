@@ -1,4 +1,3 @@
-if game.Player.UserId=4255790295 then
 local player = game.Players.LocalPlayer
 local gui = Instance.new("ScreenGui")
 gui.Parent = player.PlayerGui
@@ -477,4 +476,3 @@ game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer("rebirthReq
         wait(0.3)
     end
 end)
-end
