@@ -74,7 +74,11 @@ local tAFK = w2:Toggle('Auto AFK', {flag = "AutoAFK"})
 spawn(function()
     while true do
         if settingsTable.AutoAFK and tAFK.value then
-            -- AFK code here
+            local character = game.Players.LocalPlayer.Character
+            if character and character.Parent then
+                local url = "https://raw.githubusercontent.com/shravan-alt/Scripts/main/Anti-AFK"
+                loadstring(game:HttpGet(url))()
+            end
         end
         wait()
     end
@@ -84,7 +88,8 @@ local wTool = w2:Section('Tool')
 local bToolFarm = wTool:Button("Tool Farm", function()
     while true do
         if settingsTable.AutoToolFarm then
-            local tool = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
+            local character = game.Players.LocalPlayer.Character
+            local tool = character and character:FindFirstChildOfClass("Tool")
             if tool then
                 tool:Activate()
             end
