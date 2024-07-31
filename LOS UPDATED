@@ -1,0 +1,509 @@
+local library = loadstring(game:HttpGet("https://gist.github.com/Hakame-kun/111a815c21b0d4d651803b598d3d1b56/raw/1d051d1706fcee8fc48a2e55711b615edd9cb52f/Wally's%2520UI", true))()
+library.options.underlinecolor = "rainbow"
+
+local w = library:CreateWindow('Main')
+w:Section('Pick Your Poison!')
+local t = w:Toggle('Auto Rebirth', {flag = "Rebirth"})
+spawn( 
+    function()
+        while wait(20) do
+            if w.flags.Rebirth then
+                game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer("rebirthRequest")
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Yellow Orb (City)', {flag = "YoCity"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoCity then
+                for i = 1, 50 do
+                    game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "City")
+                end    
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Red Orb  (City)', {flag = "RoCity"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.RoCity then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Gem  (City)', {flag = "GCity"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.GCity then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Gem", "City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Hoops', {flag = "Hoops"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.Hoops then
+                for i,v in pairs(game:GetService("Workspace").Hoops:GetChildren()) do
+firetouchinterest(v, game:GetService('Players').LocalPlayer.Character.HumanoidRootPart, 0)
+wait()
+firetouchinterest(v, game:GetService('Players').LocalPlayer.Character.HumanoidRootPart, 1)
+end
+            end
+        end
+    end
+)
+
+local w = library:CreateWindow('Another Farm')
+w:Section('So, now youre on another map')
+local t = w:Toggle('Yellow Orb  (Snow City)', {flag = "YoSnow"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoSnow then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "Snow City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Red Orb  (Snow City)', {flag = "RoSnow"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.RoSnow then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Snow City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Gem  (Snow City)', {flag = "GSnow"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.GSnow then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Gem", "Snow City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Yellow Orb  (Magma City)', {flag = "YoMagma"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoMagma then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "Magma City") 
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Red Orb  (Magma City)', {flag = "RoMagma"})
+spawn( 
+    function()
+        while wait(0.03) do
+            if w.flags.RoMagma then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Magma City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Gem  (Magma City)', {flag = "GMagma"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.GMagma then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Gem", "Magma City")
+                end
+            end
+        end
+    end
+)
+
+w:Section('Space')
+local t = w:Toggle('Yellow Orb ', {flag = "YoSpace"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoSpace then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "Space")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Red Orb ', {flag = "RoSpace"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.RoSpace then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Space")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Gem Orb ', {flag = "GSpace"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.GSpace then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Gem", "Space")
+                end
+            end
+        end
+    end
+)
+
+w:Section('Desert')
+local t = w:Toggle('Yellow Orb ', {flag = "YoDesert"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoDesert then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "Desert")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Red Orb ', {flag = "RoDesert"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.RoDesert then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Desert")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Gem Orb ', {flag = "GDesert"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.GDesert then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Gem", "Desert")
+                end
+            end
+        end
+    end
+)
+
+w:Section('Legends Highway')
+local t = w:Toggle('Yellow Orb ', {flag = "YoLegends"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoLegends then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "Legends Highway")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Red Orb ', {flag = "RoLegends"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.RoLegends then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Legends Highway")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Gem Orb ', {flag = "GLegends"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.GLegends then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Gem", "Legends Highway")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Blue Orb ', {flag = "BoLegends"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.BoLegends then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Blue Orb", "Legends Highway")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Orange Orb ', {flag = "OoLegends"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.OoLegends then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Orange Orb", "Legends Highway")
+                end
+            end
+        end
+    end
+)
+
+local w = library:CreateWindow('Open Crystal')
+w:Section('Main World')
+local t = w:Toggle('Red Crystal', {flag = "ReC"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.ReC then
+                game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Red Crystal")
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Purple Crystal', {flag = "PuC"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.PuC then
+                game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Purple Crystal")
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Yellow Crystal', {flag = "YeC"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YeC then
+                game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Yellow Crystal")
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Lightning Crystal', {flag = "LiC"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.LiC then
+                game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Lightning Crystal")
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Snow Crystal', {flag = "SnC"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.SnC then
+                game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Snow Crystal")
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Inferno Crystal', {flag = "InC"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.InC then
+                game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Inferno Crystal")
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Electro Legends Crystal', {flag = "ElC"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.ElC then
+                game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Electro Legends Crystal")
+            end
+        end
+    end
+)
+
+w:Section('Space')
+local t = w:Toggle('Space Crystal', {flag = "SpC"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.SpC then
+                game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Space Crystal")
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Alien Crystal', {flag = "AlC"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.AlC then
+                game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Alien Crystal")
+            end
+        end
+    end
+)
+
+w:Section('Desert')
+local t = w:Toggle('Desert Crystal', {flag = "DeC"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.DeC then
+                game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Desert Crystal")
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Electro Crystal', {flag = "EleC"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.EleC then
+                game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Electro Crystal")
+            end
+        end
+    end
+)
+
+w:Section('If it does not work')
+w:Section('Maybe your Trails/Pets is full')
+
+local w = library:CreateWindow('Other')
+w:Section('Misc')
+local b = w:Button("Anti AFK", function()
+for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+v:Disable()
+end
+end)
+
+local b = w:Button("FPS Boost", function()
+_G.Settings = {
+    Players = {
+        ["Ignore Me"] = true, -- Ignore your Character
+        ["Ignore Others"] = true -- Ignore other Characters
+    },
+    Meshes = {
+        Destroy = false, -- Destroy Meshes
+        LowDetail = true -- Low detail meshes (NOT SURE IT DOES ANYTHING)
+    },
+    Images = {
+        Invisible = true, -- Invisible Images
+        LowDetail = false, -- Low detail images (NOT SURE IT DOES ANYTHING)
+        Destroy = false, -- Destroy Images
+    },
+    Other = {
+        ["No Particles"] = true, -- Disables all ParticleEmitter, Trail, Smoke, Fire and Sparkles
+        ["No Camera Effects"] = true, -- Disables all PostEffect's (Camera/Lighting Effects)
+        ["No Explosions"] = true, -- Makes Explosion's invisible
+        ["No Clothes"] = true, -- Removes Clothing from the game
+        ["Low Water Graphics"] = true, -- Removes Water Quality
+        ["No Shadows"] = true, -- Remove Shadows
+        ["Low Rendering"] = true, -- Lower Rendering
+        ["Low Quality Parts"] = true -- Lower quality parts
+    }
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/FPSBooster.lua"))()
+end)
+
+w:Section('Pets')
+local b = w:Button("Flaming Hedgehog", function()
+    local args = {
+        [1] = game:GetService("ReplicatedStorage").cPetShopFolder:FindFirstChild("Flaming Hedgehog")
+    }
+    
+    game:GetService("ReplicatedStorage").cPetShopRemote:InvokeServer(unpack(args))
+end)
+
+w:Section('Teleport')
+local b = w:Button("Magma City", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-11054.9688, 232.791656, 4898.62842, -0.0872479677, 0.000158954252, -0.996186614, -0.00054083002, 0.999999821, 0.00020692969, 0.996186495, 0.000556821818, -0.0872478485)
+end)
+w:Section('3D render')
+local b = w:Button("False", function()
+    wait()
+    if game.PlaceId == 3101667897 then
+    game:GetService("RunService"):Set3dRenderingEnabled(false)
+    end
+end)
+
+local b = w:Button("True", function()
+    wait()
+    if game.PlaceId == 3101667897 then
+    game:GetService("RunService"):Set3dRenderingEnabled(true)
+    end
+end)
+w:Section('Just in Case')
+local Box = w:Box('WalkSpeed', { 
+   flag = "ws";
+   type = 'number';
+}, function(new, old, enter)
+   print(new, old, enter) 
+   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = tonumber(new) --Sets the walkspeed to the new value you've entered
+end)
+
+w:Section('Press Enter to activate')
+local Box = w:Box('Jump', { 
+   flag = "jp";
+   type = 'number';
+}, function(new, old, enter)
+   print(new, old, enter) 
+   game.Players.LocalPlayer.Character.Humanoid.JumpPower = tonumber(new) --Sets the walkspeed to the new value you've entered
+end)
+
+w:Section('Right Ctrl to hide')
+w:Section('Made by Me (Mr. Hakame)')
+w:Section('Updated by Shadow')
