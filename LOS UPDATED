@@ -68,6 +68,49 @@ end
     end
 )
 
+local t = w:Toggle('Race', {flag = "Race"})
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local Workspace = game:GetService('Workspace')
+local Player = game.Players.LocalPlayer
+local function onRaceInProgressChanged()
+    if ReplicatedStorage.raceInProgress.Value == true then
+        ReplicatedStorage.rEvents.raceEvent:FireServer("joinRace")
+    end
+end
+local function onRaceStartedChanged()
+    if ReplicatedStorage.raceStarted.Value == true then
+        for i, v in pairs(Workspace.raceMaps:GetChildren()) do
+            if v:FindFirstChild('finishPart') then
+                local OldFinishPosition = v.finishPart.CFrame
+                v.finishPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+                wait()
+                v.finishPart.CFrame = OldFinishPosition
+            end
+        end
+    end
+end
+spawn(function()
+    local raceInProgressConnected = false
+    local raceStartedConnected = false
+    while true do
+        wait(1)
+        if w.flags.Race then
+            if not raceInProgressConnected then
+                ReplicatedStorage.raceInProgress.Changed:Connect(onRaceInProgressChanged)
+                raceInProgressConnected = true
+            end
+
+            if not raceStartedConnected then
+                ReplicatedStorage.raceStarted.Changed:Connect(onRaceStartedChanged)
+                raceStartedConnected = true
+            end
+        else
+            raceInProgressConnected = false
+            raceStartedConnected = false
+        end
+    end
+end)
+
 local w = library:CreateWindow('Another Farm')
 w:Section('So, now youre on another map')
 local t = w:Toggle('Yellow Orb  (Snow City)', {flag = "YoSnow"})
@@ -459,6 +502,11 @@ _G.Settings = {
 loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/FPSBooster.lua"))()
 end)
 
+local b = w:Button("AutoClicker(BOOST)", function()
+    getgenv().key = "Hostile"
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/The-telligence/main/MC%20KSystem%202"))()
+end)
+
 w:Section('Pets')
 local b = w:Button("Flaming Hedgehog", function()
     local args = {
@@ -486,6 +534,7 @@ local b = w:Button("True", function()
     game:GetService("RunService"):Set3dRenderingEnabled(true)
     end
 end)
+
 w:Section('Just in Case')
 local Box = w:Box('WalkSpeed', { 
    flag = "ws";
@@ -502,6 +551,194 @@ local Box = w:Box('Jump', {
 }, function(new, old, enter)
    print(new, old, enter) 
    game.Players.LocalPlayer.Character.Humanoid.JumpPower = tonumber(new) --Sets the walkspeed to the new value you've entered
+end)
+
+local w = library:CreateWindow('Farm')
+
+w:Section('Custom Timer(Magma)')
+w:Box('Hours', { 
+    flag = "hoursInput";
+    type = 'number';
+}, function(new, old, enter)
+end)
+
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local function runRemote()
+    for i = 1, 50 do
+        ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Magma City")
+    end
+end
+
+local function runWithTimer(hours)
+    local startTime = tick()
+    local endTime = startTime + hours * 60 * 60
+
+    while tick() < endTime do
+        runRemote()
+        wait(0.03)
+    end
+    print("Script execution completed.")
+end
+
+w:Button("Start Timer", function()
+    local hours = tonumber(w.flags.hoursInput)
+    if hours and hours > 0 then
+        print("Starting script for", hours, "hours.")
+        spawn(function()
+            runWithTimer(hours)
+        end)
+    else
+        print("Please enter a valid number of hours.")
+    end
+end)
+
+w:Section('Ping Monitor (Magma)')
+w:Box('Ping Threshold', { 
+    flag = "pingThresholdInput";
+    type = 'number';
+}, function(new, old, enter)
+end)
+
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local Stats = game:GetService("Stats")
+
+local function runRemote()
+    for i = 1, 50 do
+        ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Magma City")
+    end
+end
+
+local function monitorPing(pingThreshold)
+    local startTime = tick()
+
+    while true do
+        local currentPing = tonumber(Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
+        if currentPing >= pingThreshold then
+            local reachThresholdTime = tick()
+            local timeToReachThreshold = (reachThresholdTime - startTime) / 3600 -- Convert seconds to hours
+            print("Ping threshold of " .. pingThreshold .. " ms reached! Time taken: " .. timeToReachThreshold .. " hours.")
+            while currentPing > 500 do
+                currentPing = tonumber(Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
+                wait(0.03)
+            end
+            local cooldownEndTime = tick()
+            local cooldownTime = (cooldownEndTime - reachThresholdTime) / 3600 -- Convert seconds to hours
+            print("Ping has cooled down to 500 ms or below. Cooldown time: " .. cooldownTime .. " hours.")
+            break
+        end
+        runRemote()
+        wait(0.03)
+    end
+end
+
+w:Button('Start Monitoring', function()
+    local pingThreshold = w.flags.pingThresholdInput
+    if pingThreshold then
+        monitorPing(pingThreshold)
+    else
+        print("Please enter a valid ping threshold.")
+    end
+end)
+
+w:Section('Rebirth Monitor')
+local targetRebirthInput = w:Box('Target Rebirth Value', { 
+    flag = "rebirthTargetInput";
+    type = 'number';
+})
+
+local delayTimeSlider = w:Slider('Delay Time (sec)', {
+    flag = "rebirthDelay";
+    min = 1;
+    max = 10;
+    value = 6;
+})
+
+local function getRebirths()
+    local player = game.Players.LocalPlayer
+    return player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Rebirths")
+end
+
+local function rebirth()
+    game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer("rebirthRequest")
+end
+
+local function monitorRebirths(target, delay)
+    local rebirths = getRebirths()
+    if not rebirths then return end
+    
+    _G.monitoring = true
+    while _G.monitoring do
+        rebirth()
+        wait(delay)
+        if rebirths.Value >= target then
+            _G.monitoring = false
+        end
+    end
+end
+
+w:Button('Start Monitoring', function()
+    local target = tonumber(w.flags.rebirthTargetInput)
+    local delay = w.flags.rebirthDelay
+    if target and delay then
+        monitorRebirths(target, delay)
+    end
+end)
+
+w:Button('Stop Monitoring', function()
+    _G.monitoring = false
+end)
+
+w:Section('Scripting')
+w:Box('High Ping Threshold', { 
+    flag = "highPingThresholdInput";
+    type = 'number';
+}, function(new, old, enter)
+end)
+
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local Stats = game:GetService("Stats")
+local monitoringActive = true
+
+local function runRemote()
+    for i = 1, 50 do
+        ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Magma City")
+    end
+end
+
+local function monitorHighPing(highPingThreshold)
+    local startTime = tick() 
+    while monitoringActive do
+        local currentPing = tonumber(Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
+        if currentPing >= highPingThreshold then
+            local reachThresholdTime = tick()
+            local timeToReachThreshold = reachThresholdTime - startTime
+            print("High ping threshold of " .. highPingThreshold .. " ms exceeded. Time taken: " .. timeToReachThreshold .. " seconds.")
+            while currentPing > 500 do
+                currentPing = tonumber(Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
+                wait(0.03)
+            end
+            local cooldownEndTime = tick()
+            local cooldownTime = cooldownEndTime - reachThresholdTime
+            print("Ping has returned to 500 ms or below. Cooldown time: " .. cooldownTime .. " seconds.")
+        end
+        runRemote()
+        wait(0.03)
+    end
+    print("Monitoring stopped.")
+end
+
+w:Button('Start High Ping Monitoring', function()
+    local highPingThreshold = w.flags.highPingThresholdInput
+    if highPingThreshold then
+        monitoringActive = true
+        monitorHighPing(highPingThreshold)
+    else
+        print("Please enter a valid high ping threshold.")
+    end
+end)
+
+w:Button('Force Stop', function()
+    monitoringActive = false
 end)
 
 w:Section('Right Ctrl to hide')
