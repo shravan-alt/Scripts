@@ -1,59 +1,175 @@
-local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library", true))()
+local filename = "LOS.txt"
+local HttpService = game:GetService("HttpService")
+
+-- Initialize settings table with default values
+local settingsTable = {
+    AutoLift = false,
+    AutoLift1 = false,
+    AutoSell = false,
+}
+
+-- Function to load settings from the file
+function loadSettings()
+    print("Loading settings...")
+    if isfile and isfile(filename) then
+        local fileContent = readfile(filename)
+        settingsTable = HttpService:JSONDecode(fileContent)
+        print("Settings loaded")
+        print("--New Values are--")
+        for i, v in pairs(settingsTable) do
+            print(i, v)
+        end
+    else
+        print("No settings file found, using default settings.")
+    end
+end
+
+-- Function to save settings to the file
+function saveSettings()
+    print("Saving user settings...")
+    local json = HttpService:JSONEncode(settingsTable)
+    writefile(filename, json)
+    print("Settings saved.")
+end
+
+-- Load settings when the script starts
+loadSettings()
+
+-- Load the UI library
+local library
+local success, err = pcall(function()
+    library = loadstring(game:HttpGet("https://raw.githubusercontent.com/shravan-alt/Scripts/main/Local%20Library", true))()
+end)
+
+if not success then
+    warn("Failed to load UI library: " .. err)
+    return
+end
+
 library.options.underlinecolor = "rainbow"
 
 local w = library:CreateWindow('Lifting Sim')
 w:Section('Auto Farm')
-local t = w:Toggle('Auto Lift', {flag = "AutoLift"})
-spawn( 
-    function()
-        while wait() do
-          if w.flags.AutoLift then
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
-end
-end
+
+-- Automatically enable Anti-AFK on script execution
+local antiAFKUrl = "https://raw.githubusercontent.com/shravan-alt/Scripts/main/Anti-AFK"
+loadstring(game:HttpGet(antiAFKUrl))()
+
+-- Automatically enable FPS Boost
+local fpsBoostUrl = "https://raw.githubusercontent.com/shravan-alt/Scripts/main/FPS%20Booster"
+local successFPS, errFPS = pcall(function()
+    loadstring(game:HttpGet(fpsBoostUrl))()
 end)
 
-w:Toggle('Auto Lift x100', {flag = "AutoLift1"})
-spawn( 
-    function()
-        while wait() do
-          if w.flags.AutoLift1 then
-game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "GainMuscle"})
-wait(0.3)
+if not successFPS then
+    warn("Failed to load FPS Booster: " .. errFPS)
 end
-end
+
+-- Toggle for Auto Lift
+w:Toggle('Auto Lift', {flag = "AutoLift", default = settingsTable.AutoLift}, function(state)
+    settingsTable.AutoLift = state
+    saveSettings()  -- Save settings whenever toggled
 end)
 
-w:Toggle('Auto Sell', {flag = "AutoSell"})
-spawn( 
-    function()
-        while wait() do
-          if w.flags.AutoSell then
-            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({ "SellMuscle"})
-end
-end
-end)   
-
-local w = library:CreateWindow('Other')
-w:Section('Misc')
-local b = w:Button("AFK", function()
-   repeat wait() until game.Players.LocalPlayer.Character
-    url = "https://raw.githubusercontent.com/shravan-alt/Scripts/main/Anti-AFK"
-    loadstring(game:HttpGet(url))()
+spawn(function()
+    while wait() do
+        if w.flags.AutoLift then
+            for i = 1, 5 do
+                game:GetService("ReplicatedStorage").RemoteEvent:FireServer({"GainMuscle"})
+            end
+        end
+    end
 end)
 
-w:Section('Tool')
-local b = w:Button("Tool Farm", function()
-while true do
-game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool"):Activate()
-wait()
+-- Toggle for Auto Lift x100
+w:Toggle('Auto Lift x100', {flag = "AutoLift1", default = settingsTable.AutoLift1}, function(state)
+    settingsTable.AutoLift1 = state
+    saveSettings()  -- Save settings whenever toggled
+end)
+
+spawn(function()
+    while wait() do
+        if w.flags.AutoLift1 then
+            for i = 1, 100 do
+                game:GetService("ReplicatedStorage").RemoteEvent:FireServer({"GainMuscle"})
+            end
+            wait(0.3)
+        end
+    end
+end)
+
+-- Toggle for Auto Sell
+w:Toggle('Auto Sell', {flag = "AutoSell", default = settingsTable.AutoSell}, function(state)
+    settingsTable.AutoSell = state
+    saveSettings()  -- Save settings whenever toggled
+end)
+
+spawn(function()
+    while wait() do
+        if w.flags.AutoSell then
+            game:GetService("ReplicatedStorage").RemoteEvent:FireServer({"SellMuscle"})
+        end
+    end
+end)
+
+-- Function to automatically equip the first tool in the backpack and activate it for farming
+function equipAndFarm()
+    local player = game.Players.LocalPlayer
+    while true do
+        wait() -- Check every second
+        if player.Character then
+            local toolEquipped = player.Character:FindFirstChildOfClass("Tool")
+            -- If the tool is already equipped, continue
+            if toolEquipped then
+                print("Tool is already equipped: " .. toolEquipped.Name)
+            else
+                -- Equip the first tool in the backpack
+                local backpack = player.Backpack
+                if #backpack:GetChildren() > 0 then
+                    -- Check for the first tool in the backpack
+                    for _, item in ipairs(backpack:GetChildren()) do
+                        if item:IsA("Tool") then
+                            item.Parent = player.Character -- Equip the tool
+                            print("Equipped tool: " .. item.Name)
+                            break -- Exit loop after equipping the first tool
+                        end
+                    end
+                else
+                    print("No tools found in the backpack.")
+                end
+            end
+
+            -- Activate the tool for farming
+            local activeTool = player.Character:FindFirstChildOfClass("Tool")
+            if activeTool then
+                activeTool:Activate() -- Activate the tool
+                print("Tool activated for farming: " .. activeTool.Name)
+            end
+        else
+            print("Player character not found.")
+        end
+    end
 end
+
+-- Start the tool equip and farming functionality
+spawn(equipAndFarm)
+
+-- Tool Farm Functionality
+w:Button("Tool Farm", function()
+    while true do
+        local tool = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
+        if tool then
+            tool:Activate()
+            print("Tool activated: " .. tool.Name)
+        else
+            print("No tool equipped.")
+        end
+        wait()
+    end
 end)
 
 w:Section('Auto lift x100 increase ping')
 w:Section('Equip Weight to use "Tool Farm"')
 w:Section('Right Ctrl to hide')
+
+print("Script loaded successfully!")
