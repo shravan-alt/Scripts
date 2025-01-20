@@ -1,4 +1,4 @@
-local filename = "LOS.txt"
+local filename = "LS.txt"
 local HttpService = game:GetService("HttpService")
 
 -- Initialize settings table with default values
