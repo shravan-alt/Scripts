@@ -1,0 +1,23 @@
+local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function attemptRejoin()
+    while true do
+        wait(5)
+        print("Attempting to rejoin the game...")
+        TeleportService:Teleport(game.PlaceId)
+    end
+end
+
+local function onDisconnect()
+    print("Disconnected or kicked from the game. Trying to rejoin...")
+    attemptRejoin()
+end
+
+LocalPlayer.OnRemove:Connect(onDisconnect)
+
+game:GetService("GuiService").ErrorMessageChanged:Connect(function()
+    print("Error detected. Attempting to rejoin the game...")
+    attemptRejoin()
+end)
