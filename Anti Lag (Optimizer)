@@ -1,0 +1,131 @@
+-- Combined Universal Anti-Lag Script (No Toggle, No Default Restoration, Fonts Untouched)
+
+-- User Settings
+if not _G.Settings then
+    _G.Settings = {
+        Players = {
+            ["Ignore Me"] = true,
+            ["Ignore Others"] = true
+        },
+        Meshes = {
+            Destroy = false,
+            LowDetail = true
+        },
+        Images = {
+            Invisible = true,
+            Destroy = false
+        },
+        Explosions = {
+            Smaller = true,
+            Invisible = false,
+            Destroy = false
+        },
+        Particles = {
+            Invisible = true,
+            Destroy = false
+        },
+        TextLabels = {
+            LowerQuality = true,
+            Invisible = false,
+            Destroy = false
+        },
+        MeshParts = {
+            LowerQuality = true,
+            Invisible = false,
+            Destroy = false
+        },
+        Other = {
+            ["No Particles"] = true,
+            ["No Camera Effects"] = true,
+            ["No Explosions"] = true,
+            ["No Clothes"] = true,
+            ["Low Water Graphics"] = true,
+            ["No Shadows"] = true,
+            ["Low Rendering"] = true,
+            ["Low Quality Parts"] = true
+        }
+    }
+end
+
+-- Services
+local Players = game:GetService("Players")
+local Lighting = game:GetService("Lighting")
+local Workspace = game:GetService("Workspace")
+local MaterialService = game:GetService("MaterialService")
+local StarterGui = game:GetService("StarterGui")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+
+-- Configurations
+local renderDistanceAFK = 100 -- Max render distance in AFK mode
+local cleanupInterval = 300 -- Cleanup interval (seconds)
+local isAFK = true -- Enable optimizations by default
+local decalsYeeted = true -- Removes decals for performance boost
+
+-- Optimization Function
+local function optimizeRendering()
+    print("[Optimization]: Reducing visual load...")
+
+    -- Terrain Optimizations
+    local terrain = Workspace:FindFirstChildOfClass("Terrain")
+    if terrain then
+        terrain.WaterWaveSize = 0
+        terrain.WaterWaveSpeed = 0
+        terrain.WaterReflectance = 0
+        terrain.WaterTransparency = 0
+    end
+
+    -- Lighting Optimizations
+    Lighting.GlobalShadows = false
+    Lighting.FogEnd = 9e9
+    Lighting.Brightness = 0
+    for _, effect in pairs(Lighting:GetChildren()) do
+        if effect:IsA("BlurEffect") or effect:IsA("SunRaysEffect") or effect:IsA("ColorCorrectionEffect") 
+            or effect:IsA("BloomEffect") or effect:IsA("DepthOfFieldEffect") then
+            effect.Enabled = false
+        end
+    end
+
+    -- Object Optimizations (Keep Character Visible)
+    for _, instance in pairs(game:GetDescendants()) do
+        if instance:IsA("BasePart") and instance.Parent ~= LocalPlayer.Character then
+            instance.Material = Enum.Material.Plastic
+            instance.Reflectance = 0
+        elseif instance:IsA("Decal") or instance:IsA("Texture") then
+            instance.Transparency = decalsYeeted and 1 or 0
+        elseif instance:IsA("ParticleEmitter") or instance:IsA("Trail") then
+            instance.Enabled = false
+        elseif instance:IsA("Explosion") then
+            instance.BlastPressure = 1
+            instance.BlastRadius = 1
+        elseif instance:IsA("MeshPart") then
+            instance.Material = Enum.Material.Plastic
+            instance.Reflectance = 0
+            instance.TextureID = ""
+        elseif instance:IsA("TextLabel") then
+            -- Do nothing to retain original font, size, and properties
+        end
+    end
+
+    -- Rendering Settings
+    settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+    print("[Optimization]: Visuals minimized!")
+end
+
+-- Periodic Cleanup
+RunService.Heartbeat:Connect(function()
+    if isAFK and tick() % cleanupInterval < 0.03 then
+        print("[Optimization]: Cleaning up unused objects...")
+        for _, instance in pairs(Workspace:GetDescendants()) do
+            if instance:IsA("BasePart") and not instance.Anchored then
+                instance:Destroy()
+            end
+        end
+        collectgarbage()
+    end
+end)
+
+-- Initial Execution
+if isAFK then
+    optimizeRendering()
+end
