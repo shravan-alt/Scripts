@@ -172,4 +172,7 @@ w:Section('Auto lift x100 increase ping')
 w:Section('Equip Weight to use "Tool Farm"')
 w:Section('Right Ctrl to hide')
 
+local autoRejoinUrl = "https://raw.githubusercontent.com/shravan-alt/Scripts/refs/heads/main/Auto%20Rejoin"
+loadstring(game:HttpGet(autoRejoinUrl))()
+
 print("Script loaded successfully!")
