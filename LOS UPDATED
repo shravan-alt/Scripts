@@ -168,7 +168,7 @@ spawn(
 local t = w:Toggle('Red Orb  (Magma City)', {flag = "RoMagma"})
 spawn( 
     function()
-        while wait(0.03) do
+        while wait() do
             if w.flags.RoMagma then
                 for i = 1, 50 do
                 game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Magma City")
@@ -575,7 +575,7 @@ local function runWithTimer(hours)
 
     while tick() < endTime do
         runRemote()
-        wait(0.03)
+        wait()
     end
     print("Script execution completed.")
 end
@@ -627,7 +627,7 @@ local function monitorPing(pingThreshold)
             break
         end
         runRemote()
-        wait(0.03)
+        wait()
     end
 end
 
@@ -700,7 +700,7 @@ local Stats = game:GetService("Stats")
 local monitoringActive = true
 
 local function runRemote()
-    for i = 1, 50 do
+    for i = 1, 400 do
         ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Magma City")
     end
 end
@@ -711,18 +711,21 @@ local function monitorHighPing(highPingThreshold)
         local currentPing = tonumber(Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
         if currentPing >= highPingThreshold then
             local reachThresholdTime = tick()
-            local timeToReachThreshold = reachThresholdTime - startTime
-            print("High ping threshold of " .. highPingThreshold .. " ms exceeded. Time taken: " .. timeToReachThreshold .. " seconds.")
+            local timeToReachThreshold = (reachThresholdTime - startTime) / 3600
+            print("High ping threshold of " .. highPingThreshold .. " ms exceeded. Time taken: " .. timeToReachThreshold .. " hours.")
+            
             while currentPing > 500 do
                 currentPing = tonumber(Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
                 wait(0.03)
             end
+
             local cooldownEndTime = tick()
-            local cooldownTime = cooldownEndTime - reachThresholdTime
-            print("Ping has returned to 500 ms or below. Cooldown time: " .. cooldownTime .. " seconds.")
+            local cooldownTime = (cooldownEndTime - reachThresholdTime) / 3600
+            print("Ping has returned to 500 ms or below. Cooldown time: " .. cooldownTime .. " hours.")
         end
+        
         runRemote()
-        wait(0.03)
+        wait()
     end
     print("Monitoring stopped.")
 end
