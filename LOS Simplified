@@ -1,0 +1,586 @@
+local library = loadstring(game:HttpGet("https://gist.github.com/Hakame-kun/111a815c21b0d4d651803b598d3d1b56/raw/1d051d1706fcee8fc48a2e55711b615edd9cb52f/Wally's%2520UI", true))()
+library.options.underlinecolor = "rainbow"
+
+local w = library:CreateWindow('Main')
+w:Section('Pick Your Poison!')
+local t = w:Toggle('Auto Rebirth', {flag = "Rebirth"})
+spawn( 
+    function()
+        while wait(20) do
+            if w.flags.Rebirth then
+                game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer("rebirthRequest")
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Ethereal Orb (City) Best', {flag = "ErCity"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoCity then
+                for i = 1, 50 do
+                    game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Ethereal Orb", "City")
+                end    
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Yellow Orb (City)', {flag = "YoCity"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoCity then
+                for i = 1, 50 do
+                    game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "City")
+                end    
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Red Orb  (City)', {flag = "RoCity"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.RoCity then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Gem  (City)', {flag = "GCity"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.GCity then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Gem", "City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Hoops', {flag = "Hoops"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.Hoops then
+                for i,v in pairs(game:GetService("Workspace").Hoops:GetChildren()) do
+firetouchinterest(v, game:GetService('Players').LocalPlayer.Character.HumanoidRootPart, 0)
+wait()
+firetouchinterest(v, game:GetService('Players').LocalPlayer.Character.HumanoidRootPart, 1)
+end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Race', {flag = "Race"})
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local Workspace = game:GetService('Workspace')
+local Player = game.Players.LocalPlayer
+local function onRaceInProgressChanged()
+    if ReplicatedStorage.raceInProgress.Value == true then
+        ReplicatedStorage.rEvents.raceEvent:FireServer("joinRace")
+    end
+end
+local function onRaceStartedChanged()
+    if ReplicatedStorage.raceStarted.Value == true then
+        for i, v in pairs(Workspace.raceMaps:GetChildren()) do
+            if v:FindFirstChild('finishPart') then
+                local OldFinishPosition = v.finishPart.CFrame
+                v.finishPart.CFrame = Player.Character.HumanoidRootPart.CFrame
+                wait()
+                v.finishPart.CFrame = OldFinishPosition
+            end
+        end
+    end
+end
+spawn(function()
+    local raceInProgressConnected = false
+    local raceStartedConnected = false
+    while true do
+        wait(1)
+        if w.flags.Race then
+            if not raceInProgressConnected then
+                ReplicatedStorage.raceInProgress.Changed:Connect(onRaceInProgressChanged)
+                raceInProgressConnected = true
+            end
+
+            if not raceStartedConnected then
+                ReplicatedStorage.raceStarted.Changed:Connect(onRaceStartedChanged)
+                raceStartedConnected = true
+            end
+        else
+            raceInProgressConnected = false
+            raceStartedConnected = false
+        end
+    end
+end)
+
+local w = library:CreateWindow('Another Farm')
+w:Section('So, now youre on another map')
+
+local t = w:Toggle('Ethereal Orb (Snow City) Best', {flag = "ErSnow"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoCity then
+                for i = 1, 50 do
+                    game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Ethereal Orb", "Snow City")
+                end    
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Yellow Orb  (Snow City)', {flag = "YoSnow"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoSnow then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "Snow City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Red Orb  (Snow City)', {flag = "RoSnow"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.RoSnow then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Snow City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Gem  (Snow City)', {flag = "GSnow"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.GSnow then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Gem", "Snow City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Ethereal Orb (Magma) Best', {flag = "ErMagma"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoCity then
+                for i = 1, 50 do
+                    game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Ethereal Orb", "Magma City")
+                end    
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Yellow Orb  (Magma City)', {flag = "YoMagma"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoMagma then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "Magma City") 
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Red Orb  (Magma City)', {flag = "RoMagma"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.RoMagma then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Magma City")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Gem  (Magma City)', {flag = "GMagma"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.GMagma then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Gem", "Magma City")
+                end
+            end
+        end
+    end
+)
+
+w:Section('Legends Highway')
+local t = w:Toggle('Ethereal Orb Best', {flag = "ErLegends"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoCity then
+                for i = 1, 50 do
+                    game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Ethereal Orb", "Legends Highway")
+                end    
+            end
+        end
+    end
+)
+local t = w:Toggle('Yellow Orb ', {flag = "YoLegends"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.YoLegends then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Yellow Orb", "Legends Highway")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Red Orb ', {flag = "RoLegends"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.RoLegends then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Legends Highway")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Gem Orb ', {flag = "GLegends"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.GLegends then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Gem", "Legends Highway")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Blue Orb ', {flag = "BoLegends"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.BoLegends then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Blue Orb", "Legends Highway")
+                end
+            end
+        end
+    end
+)
+
+local t = w:Toggle('Orange Orb ', {flag = "OoLegends"})
+spawn( 
+    function()
+        while wait() do
+            if w.flags.OoLegends then
+                for i = 1, 50 do
+                game:GetService('ReplicatedStorage').rEvents.orbEvent:FireServer("collectOrb", "Orange Orb", "Legends Highway")
+                end
+            end
+        end
+    end
+)
+
+local w = library:CreateWindow('Other')
+w:Section('Misc')
+
+local b = w:Button("AutoClicker(BOOST)", function()
+    getgenv().key = "Hostile"
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/The-telligence/main/MC%20KSystem%202"))()
+end)
+
+w:Section('Pets')
+local b = w:Button("Flaming Hedgehog", function()
+    local args = {
+        [1] = game:GetService("ReplicatedStorage").cPetShopFolder:FindFirstChild("Flaming Hedgehog")
+    }
+    
+    game:GetService("ReplicatedStorage").cPetShopRemote:InvokeServer(unpack(args))
+end)
+
+local b = w:Button("Swift Samurai", function()
+local args = {
+    [1] = game:GetService("ReplicatedStorage").cPetShopFolder:FindFirstChild("Swift Samurai")
+}
+
+game:GetService("ReplicatedStorage").cPetShopRemote:InvokeServer(unpack(args))
+end)
+
+w:Section('Teleport')
+local b = w:Button("Magma City", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-11054.9688, 232.791656, 4898.62842, -0.0872479677, 0.000158954252, -0.996186614, -0.00054083002, 0.999999821, 0.00020692969, 0.996186495, 0.000556821818, -0.0872478485)
+end)
+
+local b = w:Button("legends Highway", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-13096.4297, 217.266861, 5907.51367, -0.979990005, -6.23459151e-09, 0.199046746, -7.75407016e-10, 1, 2.75045959e-08, -0.199046746, 2.67998868e-08, -0.979990005)
+end)
+
+w:Section('3D render')
+local b = w:Button("False", function()
+    wait()
+    if game.PlaceId == 3101667897 then
+    game:GetService("RunService"):Set3dRenderingEnabled(false)
+    end
+end)
+
+local b = w:Button("True", function()
+    wait()
+    if game.PlaceId == 3101667897 then
+    game:GetService("RunService"):Set3dRenderingEnabled(true)
+    end
+end)
+
+w:Section('Just in Case')
+local Box = w:Box('WalkSpeed', { 
+   flag = "ws";
+   type = 'number';
+}, function(new, old, enter)
+   print(new, old, enter) 
+   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = tonumber(new) --Sets the walkspeed to the new value you've entered
+end)
+
+w:Section('Press Enter to activate')
+local Box = w:Box('Jump', { 
+   flag = "jp";
+   type = 'number';
+}, function(new, old, enter)
+   print(new, old, enter) 
+   game.Players.LocalPlayer.Character.Humanoid.JumpPower = tonumber(new) --Sets the walkspeed to the new value you've entered
+end)
+
+local w = library:CreateWindow('Farm')
+w:Section('Rebirth Monitor')
+local targetRebirthInput = w:Box('Target Rebirth Value', { 
+    flag = "rebirthTargetInput";
+    type = 'number';
+})
+
+local delayTimeSlider = w:Slider('Delay Time (sec)', {
+    flag = "rebirthDelay";
+    min = 1;
+    max = 10;
+    value = 6;
+})
+
+local function getRebirths()
+    local player = game.Players.LocalPlayer
+    return player:FindFirstChild("leaderstats") and player.leaderstats:FindFirstChild("Rebirths")
+end
+
+local function rebirth()
+    game:GetService("ReplicatedStorage").rEvents.rebirthEvent:FireServer("rebirthRequest")
+end
+
+local function monitorRebirths(target, delay)
+    local rebirths = getRebirths()
+    if not rebirths then return end
+    
+    _G.monitoring = true
+    while _G.monitoring do
+        rebirth()
+        wait(delay)
+        if rebirths.Value >= target then
+            _G.monitoring = false
+        end
+    end
+end
+
+w:Button('Start Monitoring', function()
+    local target = tonumber(w.flags.rebirthTargetInput)
+    local delay = w.flags.rebirthDelay
+    if target and delay then
+        monitorRebirths(target, delay)
+    end
+end)
+
+w:Button('Stop Monitoring', function()
+    _G.monitoring = false
+end)
+
+w:Section('Scripting')
+w:Box('High Ping Threshold', { 
+    flag = "highPingThresholdInput";
+    type = 'number';
+}, function(new, old, enter)
+end)
+
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local Stats = game:GetService("Stats")
+local monitoringActive = true
+
+local function runRemote()
+    for i = 1, 400 do
+        ReplicatedStorage.rEvents.orbEvent:FireServer("collectOrb", "Red Orb", "Magma City")
+    end
+end
+
+local function monitorHighPing(highPingThreshold)
+    local startTime = tick() 
+    while monitoringActive do
+        local currentPing = tonumber(Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
+        if currentPing >= highPingThreshold then
+            local reachThresholdTime = tick()
+            local timeToReachThreshold = (reachThresholdTime - startTime) / 3600
+            print("High ping threshold of " .. highPingThreshold .. " ms exceeded. Time taken: " .. timeToReachThreshold .. " hours.")
+            
+            while currentPing > 500 do
+                currentPing = tonumber(Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
+                wait(0.03)
+            end
+
+            local cooldownEndTime = tick()
+            local cooldownTime = (cooldownEndTime - reachThresholdTime) / 3600
+            print("Ping has returned to 500 ms or below. Cooldown time: " .. cooldownTime .. " hours.")
+        end
+        
+        runRemote()
+        wait()
+    end
+    print("Monitoring stopped.")
+end
+
+w:Button('Start High Ping Monitoring', function()
+    local highPingThreshold = w.flags.highPingThresholdInput
+    if highPingThreshold then
+        monitoringActive = true
+        monitorHighPing(highPingThreshold)
+    else
+        print("Please enter a valid high ping threshold.")
+    end
+end)
+
+w:Button('Force Stop', function()
+    monitoringActive = false
+end)
+w:Section('Scripting v2.0')
+
+w:Box('High Ping Threshold', { 
+    flag = "highPingThresholdInput";
+    type = 'number';
+}, function(new, old, enter)
+end)
+
+w:Box('Number of Remotes to Run', {
+    flag = "remoteCount";
+    type = 'number';
+}, function(new, old, enter)
+end)
+
+local ReplicatedStorage = game:GetService('ReplicatedStorage')
+local Stats = game:GetService("Stats")
+local monitoringActive = true
+
+local function runRemote()
+    local event = ReplicatedStorage:FindFirstChild("rEvents"):FindFirstChild("orbEvent")
+    if event and event:IsA("RemoteEvent") then
+        local remoteCount = tonumber(w.flags.remoteCount) or 0
+        for i = 1, remoteCount do
+            event:FireServer("collectOrb", "Red Orb", "Magma City")
+        end
+    else
+        print("Invalid remote event.")
+    end
+end
+
+local function monitorHighPing(highPingThreshold)
+    local startTime = tick() 
+    while monitoringActive do
+        local currentPing = tonumber(Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
+        if currentPing >= highPingThreshold then
+            local reachThresholdTime = tick()
+            local timeToReachThreshold = (reachThresholdTime - startTime) / 3600
+            print("High ping threshold of " .. highPingThreshold .. " ms exceeded. Time taken: " .. timeToReachThreshold .. " hours.")
+            
+            while currentPing > 500 do
+                currentPing = tonumber(Stats.Network.ServerStatsItem["Data Ping"]:GetValue())
+                wait(0.03)
+            end
+
+            local cooldownEndTime = tick()
+            local cooldownTime = (cooldownEndTime - reachThresholdTime) / 3600
+            print("Ping has returned to 500 ms or below. Cooldown time: " .. cooldownTime .. " hours.")
+        end
+        
+        runRemote()
+        wait()
+    end
+    print("Monitoring stopped.")
+end
+
+w:Button('Start High Ping Monitoring', function()
+    local highPingThreshold = w.flags.highPingThresholdInput
+    if highPingThreshold and w.flags.remoteCount then
+        monitoringActive = true
+        monitorHighPing(highPingThreshold)
+    else
+        print("Please enter valid inputs for high ping threshold and remote count.")
+    end
+end)
+
+w:Button('Force Stop', function()
+    monitoringActive = false
+end)
+
+w:Section('Right Ctrl to hide')
+w:Section('Made by Me (Mr. Hakame)')
+w:Section('Updated by Shadow')
+
+for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+    v:Disable()
+end
+
+_G.Settings = {
+    Players = {
+        ["Ignore Me"] = true, -- Ignore your Character
+        ["Ignore Others"] = true -- Ignore other Characters
+    },
+    Meshes = {
+        Destroy = false, -- Destroy Meshes
+        LowDetail = true -- Low detail meshes (NOT SURE IT DOES ANYTHING)
+    },
+    Images = {
+        Invisible = true, -- Invisible Images
+        LowDetail = false, -- Low detail images (NOT SURE IT DOES ANYTHING)
+        Destroy = false, -- Destroy Images
+    },
+    Other = {
+        ["No Particles"] = true, -- Disables all ParticleEmitter, Trail, Smoke, Fire, and Sparkles
+        ["No Camera Effects"] = true, -- Disables all PostEffect's (Camera/Lighting Effects)
+        ["No Explosions"] = true, -- Makes Explosion's invisible
+        ["No Clothes"] = true, -- Removes Clothing from the game
+        ["Low Water Graphics"] = true, -- Removes Water Quality
+        ["No Shadows"] = true, -- Remove Shadows
+        ["Low Rendering"] = true, -- Lower Rendering
+        ["Low Quality Parts"] = true -- Lower quality parts
+    }
+}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/FPSBooster.lua"))()
